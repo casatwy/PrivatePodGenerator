@@ -118,7 +118,6 @@ sed -i "" "s%__HTTPSRepo__%${httpsRepo}%g"    "$specFilePath"
 sed -i "" "s%TemplateProject%${projectName}%g" "$specFilePath"
 
 sed -i "" "s%__ProjectName__%${projectName}%g" "$podfilePath"
-sed -i "" "s%__TargetModuleName__%${targetModuleName}%g" "${podfilePath}"
 sed -i "" "s%TemplateProject%${projectName}%g" "$podfilePath"
   
 sed -i "" "s%TemplateProject%${projectName}%g" "./${projectName}/${projectName}.xcodeproj/project.pbxproj"
