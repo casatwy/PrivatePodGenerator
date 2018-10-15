@@ -1,5 +1,6 @@
 #!/bin/bash
 
+cd ..
 Cyan='\033[0;36m'
 Default='\033[0;m'
 
@@ -111,7 +112,7 @@ git rm --cached .DS_Store       &> /dev/null
 git rm -rf --cached $projectName.xcworkspace/ &> /dev/null
 git rm -rf --cached $projectName.xcodeproj/xcuserdata/`whoami`.xcuserdatad/xcschemes/$projectName.xcscheme &> /dev/null
 git rm -rf --cached $projectName.xcodeproj/project.xcworkspace/xcuserdata/ &> /dev/null
-pod update --verbose
+pod update --verbose --no-repo-update
 git add . ; git commit -am modification ; git push origin master --tags
 echo "clean finished"
 say "finished"
