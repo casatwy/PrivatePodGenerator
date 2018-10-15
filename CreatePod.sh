@@ -1,5 +1,7 @@
 #!/bin/bash
 
+git pull origin master
+
 cd ..
 Cyan='\033[0;36m'
 Default='\033[0;m'
