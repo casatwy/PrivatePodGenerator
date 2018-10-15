@@ -111,6 +111,7 @@ git rm --cached .DS_Store       &> /dev/null
 git rm -rf --cached $projectName.xcworkspace/ &> /dev/null
 git rm -rf --cached $projectName.xcodeproj/xcuserdata/`whoami`.xcuserdatad/xcschemes/$projectName.xcscheme &> /dev/null
 git rm -rf --cached $projectName.xcodeproj/project.xcworkspace/xcuserdata/ &> /dev/null
+pod update --verbose
 git add . ; git commit -am modification ; git push origin master --tags
 echo "clean finished"
 say "finished"
