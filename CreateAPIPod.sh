@@ -10,6 +10,7 @@ httpsRepo=""
 sshRepo=""
 homePage=""
 serviceName=""
+year=`date +%Y`
 
 confirmed="n"
 
@@ -93,6 +94,7 @@ UITableViewControllerPath="./${projectName}/${projectName}/Demo/ViewController/U
 ServiceFilePath="./${projectName}/${projectName}/$projectName/Service/${serviceName}.swift"
 
 CreateAPIManagerPath="./${projectName}/Scripts/CreateAPIManager.sh"
+APIViewControllerPath="./{projectName}/Scripts/templates/Demo/APIController/APIViewController.swift"
 
 mv ./${projectName}/pod.podspec  "$specFilePath"
 mv ./${projectName}/APITemplateProject ./${projectName}/${projectName}
@@ -138,6 +140,9 @@ sed -i "" "s%APITemplateProject%${projectName}%g" $ServiceFilePath
 
 sed -i "" "s%____ServiceName____%${serviceName}%g" $CreateAPIManagerPath
 sed -i "" "s%____ProjectName____%${projectName}%g" $CreateAPIManagerPath
+
+sed -i "" "s%____ProjectName____%${projectName}%g" $APIViewControllerPath
+sed -i "" "s%____YEAR____%${year}%g" $APIViewControllerPath
 
 cd ./$projectName
 pod update --verbose --no-repo-update
