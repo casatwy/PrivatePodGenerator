@@ -94,7 +94,7 @@ UITableViewControllerPath="./${projectName}/${projectName}/Demo/ViewController/U
 ServiceFilePath="./${projectName}/${projectName}/$projectName/Service/${serviceName}.swift"
 
 CreateAPIManagerPath="./${projectName}/Scripts/CreateAPIManager.sh"
-APIViewControllerPath="./${projectName}/Scripts/templates/Demo/APIController/APIViewController.swift"
+APIViewControllerPath="./${projectName}/Scripts/templates/APIViewController.swift"
 
 mv ./${projectName}/pod.podspec  "$specFilePath"
 mv ./${projectName}/APITemplateProject ./${projectName}/${projectName}
