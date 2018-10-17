@@ -79,7 +79,7 @@ do
     read -p "confirm? (y/n):" confirmed
 done
 
-git clone git@git.mogo.com:iOS_Template/APITemplateProject.git ${projectName}
+git clone https://github.com/casatwy/APITemplateProject.git ${projectName}
 
 gitignoreFilePath="./${projectName}/.gitignore"
 specFilePath="./${projectName}/${projectName}.podspec"
