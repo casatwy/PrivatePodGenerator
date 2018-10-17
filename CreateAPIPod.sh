@@ -93,8 +93,13 @@ LifeCycleViewControllerPath="./${projectName}/${projectName}/Demo/ViewController
 UITableViewControllerPath="./${projectName}/${projectName}/Demo/ViewController/UITableView.ViewController.extension.swift"
 ServiceFilePath="./${projectName}/${projectName}/$projectName/Service/${serviceName}.swift"
 
-CreateAPIManagerPath="./${projectName}/Scripts/CreateAPIManager.sh"
-APIViewControllerPath="./${projectName}/Scripts/templates/APIViewController.swift"
+TemplateCreateAPIManagerPath="./${projectName}/Scripts/CreateAPIManager.sh"
+TemplateCreatePageAPIManagerPath="./${projectName}/Scripts/CreatePageAPIManager.sh"
+TemplateCreateServicePath="./${projectName}/Scripts/CreateService.sh"
+TemplateAPIViewControllerPath="./${projectName}/Scripts/templates/APIViewController.swift"
+TemplateServicePath="./${projectName}/Scripts/templates/Service.swift"
+TemplateAPIManagerPath="./${projectName}/Scripts/templates/APIManager.swift"
+TemplatePageAPIManagerPath="./${projectName}/Scripts/templates/PagableAPIManager.swift"
 
 mv ./${projectName}/pod.podspec  "$specFilePath"
 mv ./${projectName}/APITemplateProject ./${projectName}/${projectName}
@@ -138,11 +143,20 @@ sed -i "" "s%APITemplateProject%${projectName}%g" $UITableViewControllerPath
 sed -i "" "s%__ServiceName__%${serviceName}%g" $ServiceFilePath
 sed -i "" "s%APITemplateProject%${projectName}%g" $ServiceFilePath
 
-sed -i "" "s%____ServiceName____%${serviceName}%g" $CreateAPIManagerPath
-sed -i "" "s%____ProjectName____%${projectName}%g" $CreateAPIManagerPath
+sed -i "" "s%____ServiceName____%${serviceName}%g" $TemplateCreateAPIManagerPath
+sed -i "" "s%____ProjectName____%${projectName}%g" $TemplateCreateAPIManagerPath
 
-sed -i "" "s%____ProjectName____%${projectName}%g" $APIViewControllerPath
-sed -i "" "s%____YEAR____%${year}%g" $APIViewControllerPath
+sed -i "" "s%____ServiceName____%${serviceName}%g" $TemplateCreatePageAPIManagerPath
+sed -i "" "s%____ProjectName____%${projectName}%g" $TemplateCreatePageAPIManagerPath
+
+sed -i "" "s%____ProjectName____%${projectName}%g" $TemplateCreateServicePath
+
+sed -i "" "s%____ProjectName____%${projectName}%g" $TemplateServicePath
+sed -i "" "s%____ProjectName____%${projectName}%g" $TemplateAPIManagerPath
+sed -i "" "s%____ProjectName____%${projectName}%g" $TemplatePageAPIManagerPath
+
+sed -i "" "s%____ProjectName____%${projectName}%g" $TemplateAPIViewControllerPath
+sed -i "" "s%____YEAR____%${year}%g" $TemplateAPIViewControllerPath
 
 cd ./$projectName
 pod update --verbose --no-repo-update
