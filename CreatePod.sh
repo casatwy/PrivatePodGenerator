@@ -11,6 +11,24 @@ httpsRepo=""
 sshRepo=""
 homePage=""
 confirmed="n"
+privateRepoHTTPSPath=""
+privateRepoName=""
+
+getPrivateRepoName() {
+    read -p "Enter private repo name: " privateRepoName
+
+    if test -z "$privateRepoName"; then
+        privateRepoName
+    fi
+}
+
+getPrivateRepoHTTPSPath() {
+    read -p "Enter private repo https path: " privateRepoHTTPSPath
+
+    if test -z "$privateRepoHTTPSPath"; then
+        privateRepoHTTPSPath
+    fi
+}
 
 getProjectName() {
     read -p "Enter Project Name: " projectName
@@ -49,12 +67,16 @@ getInfomation() {
     getHTTPSRepo
     getSSHRepo
     getHomePage
+    getPrivateRepoName
+    getPrivateRepoHTTPSPath
 
     echo -e "\n${Default}================================================"
-    echo -e "  Project Name  :  ${Cyan}${projectName}${Default}"
-    echo -e "  HTTPS Repo    :  ${Cyan}${httpsRepo}${Default}"
-    echo -e "  SSH Repo      :  ${Cyan}${sshRepo}${Default}"
-    echo -e "  Home Page URL :  ${Cyan}${homePage}${Default}"
+    echo -e "  Project Name            :  ${Cyan}${projectName}${Default}"
+    echo -e "  HTTPS Repo              :  ${Cyan}${httpsRepo}${Default}"
+    echo -e "  SSH Repo                :  ${Cyan}${sshRepo}${Default}"
+    echo -e "  Home Page URL           :  ${Cyan}${homePage}${Default}"
+    echo -e "  Private Repo HTTPS Path :  ${Cyan}${privateRepoHTTPSPath}${Default}"
+    echo -e "  Private Repo Name       :  ${Cyan}${privateRepoName}${Default}"
     echo -e "================================================\n"
 }
 
@@ -83,23 +105,27 @@ mv ./${projectName}/TemplateProject.xcodeproj ./${projectName}/${projectName}.xc
 
 echo "editing..."
 sed -i "" "s%__ProjectName__%${projectName}%g" "$readmeFilePath"
+sed -i "" "s%TemplateProject%${projectName}%g" "$readmeFilePath"
+
 sed -i "" "s%__ProjectName__%${projectName}%g" "$gitignoreFilePath"
+sed -i "" "s%TemplateProject%${projectName}%g" "$gitignoreFilePath"
+
 sed -i "" "s%__ProjectName__%${projectName}%g" "$uploadFilePath"
+sed -i "" "s%TemplateProject%${projectName}%g" "$uploadFilePath"
+sed -i "" "s%__PrivateRepoName__%${privateRepoName}%g" "$uploadFilePath"
 
 sed -i "" "s%__ProjectName__%${projectName}%g" "$specFilePath"
 sed -i "" "s%__HomePage__%${homePage}%g"      "$specFilePath"
 sed -i "" "s%__HTTPSRepo__%${httpsRepo}%g"    "$specFilePath"
+sed -i "" "s%TemplateProject%${projectName}%g" "$specFilePath"
 
 sed -i "" "s%__ProjectName__%${projectName}%g" "$podfilePath"
+sed -i "" "s%__PrivateRepoHTTPSPath__%${privateRepoHTTPSPath}%g" "$podfilePath"
+sed -i "" "s%TemplateProject%${projectName}%g" "$podfilePath"
   
 sed -i "" "s%TemplateProject%${projectName}%g" "./${projectName}/${projectName}.xcodeproj/project.pbxproj"
 sed -i "" "s%TemplateProject%${projectName}%g" "./${projectName}/${projectName}.xcodeproj/project.xcworkspace/contents.xcworkspacedata"
 
-sed -i "" "s%TemplateProject%${projectName}%g" "$readmeFilePath"
-sed -i "" "s%TemplateProject%${projectName}%g" "$gitignoreFilePath"
-sed -i "" "s%TemplateProject%${projectName}%g" "$uploadFilePath"
-sed -i "" "s%TemplateProject%${projectName}%g" "$specFilePath"
-sed -i "" "s%TemplateProject%${projectName}%g" "$podfilePath"
 
 echo "edit finished"
 
